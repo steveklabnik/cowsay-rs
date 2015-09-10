@@ -1,5 +1,3 @@
-#![feature(convert)]
-
 pub fn message_box(message: &str, width: u64, wordwrap: bool, _: bool) -> String {
     let mut lines: Vec<&str> = Vec::new();
     let mut real_width = width;
@@ -15,20 +13,20 @@ pub fn message_box(message: &str, width: u64, wordwrap: bool, _: bool) -> String
     let mut result = format!(" {}\n", std::iter::repeat("_").take((real_width - 2) as usize).collect::<String>());
     for i in 0..lines.len() {
         if lines.len() == 1 {
-            result.push_str(format!("< {}{} >\n", lines[i], std::iter::repeat(" ").take((real_width - 4 - lines[i].len() as u64) as usize).collect::<String>()).as_str());
+            result.push_str(&format!("< {}{} >\n", lines[i], std::iter::repeat(" ").take((real_width - 4 - lines[i].len() as u64) as usize).collect::<String>()));
         }
         else {
             if i == 0 {
-                result.push_str(format!("/ {}{} \\\n", lines[i], std::iter::repeat(" ").take((real_width - 4 - lines[i].len() as u64) as usize).collect::<String>()).as_str());
+                result.push_str(&format!("/ {}{} \\\n", lines[i], std::iter::repeat(" ").take((real_width - 4 - lines[i].len() as u64) as usize).collect::<String>()));
             }
             else if i == lines.len() - 1 {
-                result.push_str(format!("\\ {}{} /\n", lines[i], std::iter::repeat(" ").take((real_width - 4 - lines[i].len() as u64) as usize).collect::<String>()).as_str());
+                result.push_str(&format!("\\ {}{} /\n", lines[i], std::iter::repeat(" ").take((real_width - 4 - lines[i].len() as u64) as usize).collect::<String>()));
             }
             else {
-                result.push_str(format!("| {}{} |\n", lines[i], std::iter::repeat(" ").take((real_width - 4 - lines[i].len() as u64) as usize).collect::<String>()).as_str());
+                result.push_str(&format!("| {}{} |\n", lines[i], std::iter::repeat(" ").take((real_width - 4 - lines[i].len() as u64) as usize).collect::<String>()));
             }
         }
     }
-    result.push_str(&format!(" {}", std::iter::repeat("-").take((real_width - 2) as usize).collect::<String>().as_str()));
+    result.push_str(&format!(" {}", std::iter::repeat("-").take((real_width - 2) as usize).collect::<String>()));
     result
 }
