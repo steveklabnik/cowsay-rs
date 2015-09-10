@@ -7,7 +7,7 @@ fn repeat_str(string: &str, times: u64) -> String {
     }
     result
 }
-pub fn message_box(message: &str, width: u64, wordwrap: bool, think: bool) -> String {
+pub fn message_box(message: &str, width: u64, wordwrap: bool, _: bool) -> String {
     let mut lines: Vec<&str> = Vec::new();
     let mut real_width = width;
     if !wordwrap {
